@@ -6,17 +6,25 @@
 
 ## Install
 
+1. Add this line in your `package.json`
+
+```
+"ReckonsysCharts": "git+https://github.com/CodeNinja47/ReckonsysCharts.git"
+```
+
+2. Run
+
 ```bash
-npm install --save reckonsys-charts
+yarn install
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import MyComponent from 'reckonsys-charts'
-import 'reckonsys-charts/dist/index.css'
+import { MyComponent } from 'ReckonsysCharts';
+import 'ReckonsysCharts/dist/index.css';
 
 class Example extends Component {
   render() {
