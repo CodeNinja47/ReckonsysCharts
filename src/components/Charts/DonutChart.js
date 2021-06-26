@@ -24,13 +24,13 @@ class SkeletonDonutChart {
 
         if (this.options && this.options.chart.type === "donut") {
             var start_angle = 0;
-            var halfCircle = Math.PI;
+            var circle = Math.PI;
         } else {
             var start_angle = Math.PI;
-            var halfCircle = Math.PI / 2;
+            var circle = Math.PI / 2;
         }
         this.options.data.forEach(obj => {
-            var slice_angle = 2 * halfCircle * obj.val / total_value;
+            var slice_angle = 2 * circle * obj.val / total_value;
 
             this.drawPieSlice(
                 this.ctx,
