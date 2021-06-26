@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import Legend from "./Legend";
+import styles from './chart.module.css'
 
 export default function PieChart({
   options,
@@ -22,6 +24,8 @@ export default function PieChart({
       data1.length === colors.length
     ) {
       var canvas = document.getElementById('pie')
+      canvas.width = options.width;
+      canvas.height = options.height;
       var context = canvas.getContext('2d')
       context.clearRect(0, 0, canvas.width, canvas.height)
       drawPieChart(data1, colors)
@@ -49,26 +53,26 @@ export default function PieChart({
       ctx.beginPath()
       ctx.fillStyle = color
       ctx.moveTo(x, y)
-      ctx.arc(x, y, y - 100, startAngle, endAngle)
+      ctx.arc(x, y, y, startAngle, endAngle)
       ctx.fill()
 
       //   ouside legend
-      if (showLegendSeperately) {
-        console.log('inside')
-        ctx.rect(canvas.width - 200, y - i * 30, 12, 12)
-        ctx.fill()
-        ctx.font = '13px sans-serif'
-        ctx.fillText(
-          data[i].label +
-            ' - ' +
-            data[i].value +
-            ' (' +
-            calculatePercent(data[i].value, total) +
-            '%)',
-          canvas.width - 200 + 20,
-          y - i * 30 + 10
-        )
-      }
+      // if (showLegendSeperately) {
+      //   console.log('inside')
+      //   ctx.rect(canvas.width - 200, y - i * 30, 12, 12)
+      //   ctx.fill()
+      //   ctx.font = '13px sans-serif'
+      //   ctx.fillText(
+      //     data[i].label +
+      //       ' - ' +
+      //       data[i].value +
+      //       ' (' +
+      //       calculatePercent(data[i].value, total) +
+      //       '%)',
+      //     canvas.width - 200 + 20,
+      //     y - i * 30 + 10
+      //   )
+      // }
 
       //inside legend
       if (inLineLegend) {
@@ -132,7 +136,7 @@ export default function PieChart({
   }
 
   return (
-    <div>
+    <div className={styles.chart_container}>
       <div
         style={{
           marginBottom: '10px'
@@ -140,7 +144,8 @@ export default function PieChart({
       >
         <button onClick={() => onDownload()}>⬇️ Download</button>
       </div>
-      <canvas id='pie' width='800' height='500'></canvas>
+      <canvas id='pie'/>
+      {showLegendSeperately && (<Legend data={options.data}> </Legend>)}
     </div>
   )
 }
