@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 
-import Legend from "../Charts/Legend";
+import Legend from "./Legend";
 
 export default function HalfDonutChart({
     options,
@@ -137,7 +137,17 @@ export default function HalfDonutChart({
         }
     }, []);
 
+    const onDownload = () => {
+        const link = document.createElement('a');
+        link.download = 'filename.png';
+        link.href = canvasRef.current.toDataURL();
+        link.click();
+    };
+
     return <div className="">
+        <div>
+            <button onClick={() => onDownload()}>⬇️ Download</button>
+        </div>
         <canvas ref={canvasRef}></canvas>
         {showLegendSeperately && <Legend data={options.data} />}
     </div>;
