@@ -125,7 +125,7 @@ const DonutChart = ({
                 <button onClick={() => onDownload()}>⬇️ Download</button>
             </div>
             <canvas ref={canvas} />
-            {showLegendSeperately && (<Legend data={options.data}> </Legend>)}
+            <Legend data={options.data} visibility={showLegendSeperately}> </Legend>
         </div>
     );
 }

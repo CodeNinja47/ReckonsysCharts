@@ -7,9 +7,9 @@ function Table(props) {
     <table className="center">
       <thead>
         <tr className="Headers">
-          <th>property</th>
-          <th>value</th>
-          <th>color</th>
+          <th>Property</th>
+          <th>Value</th>
+          <th>Color</th>
         </tr>
       </thead>
       <tbody>

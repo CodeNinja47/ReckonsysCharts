@@ -4,17 +4,16 @@ import styles from './legend.module.css'
 
 const Legend = (props) => {
     const data = props.data;
+    const visibility = props.visibility;
     return (
-        <div id="legend">
+        <div style={{visibility: visibility ? 'visible' : 'hidden' }}>
             {
                 data && data.length && (data.map(obj => (
-                    <div id="legend" key={obj.val}>
-                        <li className={styles.legend_container} >
-                            <span className={styles.legend_container_color} style={{ background: `${obj.color}` }}></span>
-                            {obj.label} ({obj.val})
-                        </li>
+                    <li className={styles.legend_container} key={obj.val}>
+                        <span className={styles.legend_container_color} style={{ background: `${obj.color}` }}></span>
+                        {obj.label} ({obj.val})
+                    </li>
 
-                    </div>
 
                 )))
             }

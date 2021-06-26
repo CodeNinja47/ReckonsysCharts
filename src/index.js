@@ -31,7 +31,7 @@ export const ReckonsysCharts = ({ options }) => {
   }
 
   return (
-    <div className={styles.test}>
+    <div className= {`${styles.test} ${styles.card}`}>
       <div className={styles.flex}>
         <div className={styles.float1} style={{ width: '50%' }}>
           <Table data={options.data} />

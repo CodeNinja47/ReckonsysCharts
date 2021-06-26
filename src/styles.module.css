@@ -1,9 +1,17 @@
 /* add css module styles here (optional) */
 
 .test {
-  margin: 2em;
+  margin: 4em 20em;
   padding: 0.5em;
   font-size: 1em;
+}
+
+.card {
+  background: #fff;
+    border-radius: 2px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
 }
 
 .float1 {
