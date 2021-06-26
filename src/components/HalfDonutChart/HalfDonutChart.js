@@ -4,11 +4,8 @@ import Legend from "../Charts/Legend";
 
 export default function HalfDonutChart({
     options,
+    showLegendSeperately
 }) {
-
-    const {
-        
-    } = options;
 
     const {
         colors,
@@ -138,6 +135,6 @@ export default function HalfDonutChart({
 
     return <div className="">
         <canvas ref={canvasRef}></canvas>
-        <Legend data={options.data} />
+        {showLegendSeperately && <Legend data={options.data} />}
     </div>;
 }
