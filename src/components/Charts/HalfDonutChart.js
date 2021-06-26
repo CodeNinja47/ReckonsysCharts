@@ -149,6 +149,6 @@ export default function HalfDonutChart({
             <button onClick={() => onDownload()}>⬇️ Download</button>
         </div>
         <canvas ref={canvasRef}></canvas>
-        {showLegendSeperately && <Legend data={options.data} />}
+        <Legend data={options.data} visibility={showLegendSeperately} />
     </div>;
 }

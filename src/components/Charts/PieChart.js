@@ -145,7 +145,7 @@ export default function PieChart({
         <button onClick={() => onDownload()}>⬇️ Download</button>
       </div>
       <canvas id='pie'/>
-      {showLegendSeperately && (<Legend data={options.data}> </Legend>)}
+      <Legend data={options.data} visibility={showLegendSeperately}> </Legend>
     </div>
   )
 }
