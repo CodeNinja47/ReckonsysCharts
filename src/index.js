@@ -18,7 +18,7 @@ const chartTypes = [
 
 export const ReckonsysCharts = ({ options }) => {
   const [form, setForm] = useState({
-    chartType: 3,
+    chartType: 2,
     inLineLegend: false,
     showLegendSeperately: false
   })
@@ -41,7 +41,11 @@ export const ReckonsysCharts = ({ options }) => {
         </div>
       </div>
       {form.chartType == 1 && <PieChart></PieChart>}
-      {form.chartType == 2 && <DonutChart options={options} />}
+      {form.chartType == 2 && <DonutChart
+        options={options}
+        showLegendSeperately={form.showLegendSeperately}
+        inLineLegend={form.inLineLegend}
+      />}
       {form.chartType == 3 && (
         <HalfDonutChart
           showLegendSeperately={form.showLegendSeperately}
