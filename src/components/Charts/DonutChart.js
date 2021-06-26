@@ -104,7 +104,7 @@ const DonutChart = ({
     function onDownload() {
         const link = document.createElement('a');
         link.download = 'filename.png';
-        link.href = this.canvas.current.toDataURL();
+        link.href = canvas.current.toDataURL();
         link.click();
     }
 
