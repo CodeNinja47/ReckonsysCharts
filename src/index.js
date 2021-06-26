@@ -8,7 +8,7 @@ import ChartType from './components/DropDown/dropdown'
 
 import DonutChart from './components/Charts/DonutChart'
 import HalfDonutChart from './components/Charts/HalfDonutChart'
-import "./main.css"
+import './main.css'
 
 const chartTypes = [
   { label: 'Pie Chart', value: 1 },
@@ -34,18 +34,26 @@ export const ReckonsysCharts = ({ options }) => {
     <div className={styles.test}>
       <div className={styles.flex}>
         <div className={styles.float1}>
-          <Table data={options.data}/>
+          <Table data={options.data} />
         </div>
         <div className={styles.float2}>
           <ChartType value={form} onChange={onChange} list={chartTypes} />
         </div>
       </div>
-      {form.chartType == 1 && <PieChart></PieChart>}
-      {form.chartType == 2 && <DonutChart
-        options={options}
-        showLegendSeperately={form.showLegendSeperately}
-        inLineLegend={form.inLineLegend}
-      />}
+      {form.chartType == 1 && (
+        <PieChart
+          options={options}
+          showLegendSeperately={form.showLegendSeperately}
+          inLineLegend={form.inLineLegend}
+        ></PieChart>
+      )}
+      {form.chartType == 2 && (
+        <DonutChart
+          options={options}
+          showLegendSeperately={form.showLegendSeperately}
+          inLineLegend={form.inLineLegend}
+        />
+      )}
       {form.chartType == 3 && (
         <HalfDonutChart
           showLegendSeperately={form.showLegendSeperately}
