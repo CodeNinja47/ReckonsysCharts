@@ -91,7 +91,7 @@ class DonutChart extends React.Component {
         this.build();
     }
 
-    build(ctx) {
+    build() {
         const ctx = this.canvas.current.getContext('2d')
         this.canvas.current.width = this.props.options.width;
         this.canvas.current.height = this.props.options.height;
