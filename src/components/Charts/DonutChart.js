@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import Legend from "./Legend";
+import styles from './chart.module.css'
 
 class SkeletonDonutChart {
 
@@ -117,7 +118,7 @@ const DonutChart = ({
     ]);
 
     return (
-        <div>
+        <div className={styles.chart_container}>
             <div style={{
                 marginBottom: '10px'
             }}>
