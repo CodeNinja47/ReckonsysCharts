@@ -1,0 +1,22 @@
+[
+    {
+      "property": "Idli",
+      "value": 38,
+      "color": "Green"
+    },
+    {
+      "property": "Dosa",
+      "value": 12,
+      "color": "Red"
+    },
+    {
+      "property": "Puri",
+      "value": 25,
+      "color": "Violet"
+    },
+    {
+      "property": "Upma",
+      "value": 25,
+      "color": "Orange"
+    }
+  ]
