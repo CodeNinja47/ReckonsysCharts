@@ -1,6 +1,10 @@
+// type donut or half-donut
 const options = {
-    title: "donut chart",
     legend: "separate",
+    chart: {
+        title: "donut chart",
+        type: "donut",
+    },
     width: 350,
     height: 350,
     data: [

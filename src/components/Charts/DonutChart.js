@@ -22,10 +22,15 @@ class SkeletonDonutChart {
         var total_value = 0;
         total_value = this.options.data.reduce((n, { val }) => n + val, 0)
 
-
-        var start_angle = 0;
+        if (this.options && this.options.chart.type === "donut") {
+            var start_angle = 0;
+            var circle = Math.PI;
+        } else {
+            var start_angle = Math.PI;
+            var circle = Math.PI / 2;
+        }
         this.options.data.forEach(obj => {
-            var slice_angle = 2 * Math.PI * obj.val / total_value;
+            var slice_angle = 2 * circle * obj.val / total_value;
 
             this.drawPieSlice(
                 this.ctx,
@@ -78,13 +83,22 @@ class DonutChart extends React.Component {
         this.canvas = React.createRef()
 
     }
-    componentDidMount() {
+
+    componentDidMount(){
+        this.build();
+    }
+    componentDidUpdate(){
+        this.build();
+    }
+
+    build() {
         const ctx = this.canvas.current.getContext('2d')
         this.canvas.current.width = this.props.options.width;
         this.canvas.current.height = this.props.options.height;
-        const skeletonDonutChart = new SkeletonDonutChart(this.props.options, ctx, this.canvas.current)
-        skeletonDonutChart.draw()
+        const skeletonDonutChart = new SkeletonDonutChart(this.props.options, ctx, this.canvas.current);
+        skeletonDonutChart.draw();
     }
+
 
     render() {
         return (
