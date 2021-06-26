@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Legend from "./Legend";
 
 class SkeletonDonutChart {
 
-    constructor(options, ctx, canvas) {
+    constructor(options, ctx, canvas, showLegendSeperately, inLineLegend) {
         this.options = options;
         this.canvas = canvas;
+        this.showLegendSeperately = showLegendSeperately;
+        this.inLineLegend = inLineLegend;
         this.ctx = ctx;
     }
 
@@ -22,10 +24,15 @@ class SkeletonDonutChart {
         var total_value = 0;
         total_value = this.options.data.reduce((n, { val }) => n + val, 0)
 
-
-        var start_angle = 0;
+        if (this.options && this.options.chart.type === "donut") {
+            var start_angle = 0;
+            var circle = Math.PI;
+        } else {
+            var start_angle = Math.PI;
+            var circle = Math.PI / 2;
+        }
         this.options.data.forEach(obj => {
-            var slice_angle = 2 * Math.PI * obj.val / total_value;
+            var slice_angle = 2 * circle * obj.val / total_value;
 
             this.drawPieSlice(
                 this.ctx,
@@ -37,7 +44,7 @@ class SkeletonDonutChart {
                 obj.color
             );
 
-            if (this.options.legend !== "separate") {
+            if (this.inLineLegend) {
                 var pieRadius = Math.min(this.canvas.width / 2, this.canvas.height / 2);
                 var labelX = this.canvas.width / 2 + (pieRadius / 2) * Math.cos(start_angle + slice_angle / 2);
                 var labelY = this.canvas.height / 2 + (pieRadius / 2) * Math.sin(start_angle + slice_angle / 2);
@@ -72,28 +79,54 @@ class SkeletonDonutChart {
 
 }
 
-class DonutChart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.canvas = React.createRef()
+const DonutChart = ({
+    options,
+    showLegendSeperately,
+    inLineLegend
+}) => {
 
-    }
-    componentDidMount() {
-        const ctx = this.canvas.current.getContext('2d')
-        this.canvas.current.width = this.props.options.width;
-        this.canvas.current.height = this.props.options.height;
-        const skeletonDonutChart = new SkeletonDonutChart(this.props.options, ctx, this.canvas.current)
-        skeletonDonutChart.draw()
-    }
+    const canvas = useRef();
 
-    render() {
-        return (
-            <div>
-                <canvas ref={this.canvas} />
-                {this.props && this.props.options.data.length && this.props.options.legend == "separate" && (<Legend data={this.props.options.data}> </Legend>)}
-            </div>
+    function build() {
+        const ctx = canvas.current.getContext('2d')
+        canvas.current.width = options.width;
+        canvas.current.height = options.height;
+        const skeletonDonutChart = new SkeletonDonutChart(
+            options,
+            ctx,
+            canvas.current,
+            showLegendSeperately,
+            inLineLegend
         );
+        skeletonDonutChart.draw();
     }
+
+    function onDownload() {
+        const link = document.createElement('a');
+        link.download = 'filename.png';
+        link.href = this.canvas.current.toDataURL();
+        link.click();
+    }
+
+    useEffect(() => {
+        build();
+    }, [
+        options,
+        showLegendSeperately,
+        inLineLegend
+    ]);
+
+    return (
+        <div>
+            <div style={{
+                marginBottom: '10px'
+            }}>
+                <button onClick={() => onDownload()}>⬇️ Download</button>
+            </div>
+            <canvas ref={canvas} />
+            {showLegendSeperately && (<Legend data={options.data}> </Legend>)}
+        </div>
+    );
 }
 
 export default DonutChart;

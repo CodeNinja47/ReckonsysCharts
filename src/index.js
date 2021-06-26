@@ -7,7 +7,8 @@ import Table from './components/Table/table'
 import ChartType from './components/DropDown/dropdown'
 
 import DonutChart from './components/Charts/DonutChart'
-import HalfDonutChart from './components/HalfDonutChart/HalfDonutChart'
+import HalfDonutChart from './components/Charts/HalfDonutChart'
+import './main.css'
 
 const chartTypes = [
   { label: 'Pie Chart', value: 1 },
@@ -17,7 +18,7 @@ const chartTypes = [
 
 export const ReckonsysCharts = ({ options }) => {
   const [form, setForm] = useState({
-    chartType: 3,
+    chartType: 2,
     inLineLegend: false,
     showLegendSeperately: false
   })
@@ -33,7 +34,7 @@ export const ReckonsysCharts = ({ options }) => {
     <div className={styles.test}>
       <div className={styles.flex}>
         <div className={styles.float1}>
-          <Table />
+          <Table data={options.data} />
         </div>
         <div className={styles.float2}>
           <ChartType value={form} onChange={onChange} list={chartTypes} />
@@ -46,7 +47,13 @@ export const ReckonsysCharts = ({ options }) => {
           inLineLegend={form.inLineLegend}
         ></PieChart>
       )}
-      {form.chartType == 2 && <DonutChart options={options} />}
+      {form.chartType == 2 && (
+        <DonutChart
+          options={options}
+          showLegendSeperately={form.showLegendSeperately}
+          inLineLegend={form.inLineLegend}
+        />
+      )}
       {form.chartType == 3 && (
         <HalfDonutChart
           showLegendSeperately={form.showLegendSeperately}
