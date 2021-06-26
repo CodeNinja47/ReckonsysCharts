@@ -15,7 +15,7 @@ const App = () => {
   }
 
   return <>
-    <button onClick={onClick}>click to change data</button>
+    {/* <button onClick={onClick}>click to change data</button> */}
     <ReckonsysCharts options={option} />
   </>
 }
