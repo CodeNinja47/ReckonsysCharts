@@ -1,0 +1,13 @@
+table, td, th {
+    border-collapse: collapse;
+    border: 1px solid green;
+    width: 25%;
+    text-align: left;
+}
+
+th {
+    font-weight: bold;
+    height: 20px;
+    background-color: #04AA6D;
+    color: white;
+}
