@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import styles from './legend.module.css'
 
 
 const Legend = (props) => {
@@ -8,9 +8,9 @@ const Legend = (props) => {
         <div id="legend">
             {
                 data && data.length && (data.map(obj => (
-                    <div id="legend" key={obj.val} >
-                        <li >
-                            <span style={{ background: `${obj.color}` }}></span>
+                    <div id="legend">
+                        <li className={styles.legend_container} key={obj.val} >
+                            <span className={styles.legend_container_color} style={{ background: `${obj.color}` }}></span>
                             {obj.label} ({obj.val})
                         </li>
 

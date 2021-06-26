@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './styles.module.css'
 
 import PieChart from './components/Charts/PieChart';
@@ -17,7 +17,6 @@ export const ExampleComponent = ({ options }) => {
   }
 
   return <div className={styles.test}>
-    <button onClick={onClick}>click to change data</button>
     <PieChart></PieChart>
     <HalfDonutChart options={options}/>
     <DonutChart options={options}></DonutChart>
