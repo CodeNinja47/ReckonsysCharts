@@ -83,13 +83,24 @@ class DonutChart extends React.Component {
         this.canvas = React.createRef()
 
     }
-    componentDidMount() {
+
+    componentDidMount(){
         const ctx = this.canvas.current.getContext('2d')
+        this.build(ctx);
+    }
+
+    componentDidUpdate(){
+        const ctx = this.canvas.current.getContext('2d')
+        this.build(ctx);
+    }
+
+    build(ctx) {
         this.canvas.current.width = this.props.options.width;
         this.canvas.current.height = this.props.options.height;
-        const skeletonDonutChart = new SkeletonDonutChart(this.props.options, ctx, this.canvas.current)
-        skeletonDonutChart.draw()
+        const skeletonDonutChart = new SkeletonDonutChart(this.props.options, ctx, this.canvas.current);
+        skeletonDonutChart.draw();
     }
+
 
     render() {
         return (
