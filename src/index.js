@@ -18,7 +18,11 @@ export const ExampleComponent = ({ options }) => {
 
   return <div className={styles.test}>
     <PieChart></PieChart>
-    <HalfDonutChart options={options}/>
-    <DonutChart options={options}></DonutChart>
+    <HalfDonutChart
+      options={options}
+    />
+    <DonutChart
+      options={options}
+    />
   </div>
 }
