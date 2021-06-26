@@ -1,6 +1,7 @@
 import React from "react";
+import Legend from "./Legend";
 
-class SkeletonChart {
+class SkeletonDonutChart {
 
     constructor(options, ctx, canvas) {
         this.options = options;
@@ -36,7 +37,7 @@ class SkeletonChart {
                 obj.color
             );
 
-            if (this.options.legend !== "inline") {
+            if (this.options.legend !== "separate") {
                 var pieRadius = Math.min(this.canvas.width / 2, this.canvas.height / 2);
                 var labelX = this.canvas.width / 2 + (pieRadius / 2) * Math.cos(start_angle + slice_angle / 2);
                 var labelY = this.canvas.height / 2 + (pieRadius / 2) * Math.sin(start_angle + slice_angle / 2);
@@ -70,7 +71,6 @@ class SkeletonChart {
     }
 
 }
-import Legend from "./Legend";
 
 class DonutChart extends React.Component {
     constructor(props) {
@@ -82,15 +82,15 @@ class DonutChart extends React.Component {
         const ctx = this.canvas.current.getContext('2d')
         this.canvas.current.width = this.props.options.width;
         this.canvas.current.height = this.props.options.height;
-        const skeletonChart = new SkeletonChart(this.props.options, ctx, this.canvas.current)
-        skeletonChart.draw()
+        const skeletonDonutChart = new SkeletonDonutChart(this.props.options, ctx, this.canvas.current)
+        skeletonDonutChart.draw()
     }
 
     render() {
         return (
             <div>
                 <canvas ref={this.canvas} />
-                {this.props && this.props.options.data.length && this.props.options.legend == "inline" && (<Legend data={this.props.options.data}> </Legend>)}
+                {this.props && this.props.options.data.length && this.props.options.legend == "separate" && (<Legend data={this.props.options.data}> </Legend>)}
             </div>
         );
     }
