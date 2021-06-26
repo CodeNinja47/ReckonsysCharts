@@ -1,6 +1,7 @@
 import React from "react";
+import Legend from "./Legend";
 
-class SkeletonChart {
+class SkeletonDonutChart {
 
     constructor(options, ctx, canvas) {
         this.options = options;
@@ -70,7 +71,6 @@ class SkeletonChart {
     }
 
 }
-import Legend from "./Legend";
 
 class DonutChart extends React.Component {
     constructor(props) {
@@ -82,8 +82,8 @@ class DonutChart extends React.Component {
         const ctx = this.canvas.current.getContext('2d')
         this.canvas.current.width = this.props.options.width;
         this.canvas.current.height = this.props.options.height;
-        const skeletonChart = new SkeletonChart(this.props.options, ctx, this.canvas.current)
-        skeletonChart.draw()
+        const skeletonDonutChart = new SkeletonDonutChart(this.props.options, ctx, this.canvas.current)
+        skeletonDonutChart.draw()
     }
 
     render() {
