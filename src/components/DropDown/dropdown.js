@@ -1,40 +1,42 @@
-import React from 'react';
+import React from 'react'
 
-
-const ChartType = ({
-  value,
-  onChange,
-  list
-}) => {
+const ChartType = ({ value, onChange, list }) => {
   return (
-    <div className="styles.extras">
-      <label>
-        Select the chart type:
-        <br />
-        <select value={value.chartType} onChange={event => onChange('chartType', event.target.value)}>
-          {list.map((item, index) => <option key={index} value={item.value}>{item.label}</option>)}
-        </select>
-      </label>
-      <br />
-      <label>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <label style={{ marginBottom: '0.5rem' }}>Select the chart type:</label>
+      <select
+        value={value.chartType}
+        onChange={(event) => onChange('chartType', event.target.value)}
+        style={{ width: '25%', marginBottom: '2rem', height: '2rem' }}
+      >
+        {list.map((item, index) => (
+          <option key={index} value={item.value}>
+            {item.label}
+          </option>
+        ))}
+      </select>
+      <label style={{ marginBottom: '2rem' }}>
         <input
-          name="inLineLegend"
-          type="checkbox"
+          name='inLineLegend'
+          type='checkbox'
           checked={value.inLineLegend}
-          onChange={() => onChange('inLineLegend', !value.inLineLegend)} />
-        In Line Legend:
+          onChange={() => onChange('inLineLegend', !value.inLineLegend)}
+        />
+        In Line Legend
       </label>
-      <br />
       <label>
         <input
-          name="showLegendSeperately"
-          type="checkbox"
+          name='showLegendSeperately'
+          type='checkbox'
           checked={value.showLegendSeperately}
-          onChange={() => onChange('showLegendSeperately', !value.showLegendSeperately)} />
+          onChange={() =>
+            onChange('showLegendSeperately', !value.showLegendSeperately)
+          }
+        />
         Show Legend Seperately
       </label>
     </div>
-  );
+  )
 }
 
-export default ChartType;
+export default ChartType

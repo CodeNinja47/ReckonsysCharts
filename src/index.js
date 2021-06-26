@@ -33,34 +33,36 @@ export const ReckonsysCharts = ({ options }) => {
   return (
     <div className={styles.test}>
       <div className={styles.flex}>
-        <div className={styles.float1}>
+        <div className={styles.float1} style={{ width: '50%' }}>
           <Table data={options.data} />
         </div>
-        <div className={styles.float2}>
+        <div className={styles.float2} style={{ width: '50%' }}>
           <ChartType value={form} onChange={onChange} list={chartTypes} />
         </div>
       </div>
-      {form.chartType == 1 && (
-        <PieChart
-          options={options}
-          showLegendSeperately={form.showLegendSeperately}
-          inLineLegend={form.inLineLegend}
-        ></PieChart>
-      )}
-      {form.chartType == 2 && (
-        <DonutChart
-          options={options}
-          showLegendSeperately={form.showLegendSeperately}
-          inLineLegend={form.inLineLegend}
-        />
-      )}
-      {form.chartType == 3 && (
-        <HalfDonutChart
-          showLegendSeperately={form.showLegendSeperately}
-          inLineLegend={form.inLineLegend}
-          options={options}
-        />
-      )}
+      <div style={{ marginTop: '1rem' }}>
+        {form.chartType == 1 && (
+          <PieChart
+            options={options}
+            showLegendSeperately={form.showLegendSeperately}
+            inLineLegend={form.inLineLegend}
+          ></PieChart>
+        )}
+        {form.chartType == 2 && (
+          <DonutChart
+            options={options}
+            showLegendSeperately={form.showLegendSeperately}
+            inLineLegend={form.inLineLegend}
+          />
+        )}
+        {form.chartType == 3 && (
+          <HalfDonutChart
+            showLegendSeperately={form.showLegendSeperately}
+            inLineLegend={form.inLineLegend}
+            options={options}
+          />
+        )}
+      </div>
     </div>
   )
 }
