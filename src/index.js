@@ -7,7 +7,7 @@ import Table from './components/Table/table'
 import ChartType from './components/DropDown/dropdown'
 
 import DonutChart from './components/Charts/DonutChart'
-import HalfDonutChart from './components/HalfDonutChart/HalfDonutChart'
+import HalfDonutChart from './components/Charts/HalfDonutChart'
 import "./main.css"
 
 const chartTypes = [
