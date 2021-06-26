@@ -7,7 +7,6 @@ import Table from './components/Table/table';
 import ChartType from './components/DropDown/dropdown';
 
 import DonutChart from './components/Charts/DonutChart';
-import HalfDonutChart from './components/HalfDonutChart/HalfDonutChart';
 
 export const ReckonsysCharts = ({ options }) => {
 
@@ -22,10 +21,6 @@ export const ReckonsysCharts = ({ options }) => {
       </div>
     </div>
     <PieChart></PieChart>
-
-    <HalfDonutChart
-      options={options}
-    />
     <DonutChart
       options={options}
     />
