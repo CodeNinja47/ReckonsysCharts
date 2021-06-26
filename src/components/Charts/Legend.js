@@ -8,8 +8,8 @@ const Legend = (props) => {
         <div id="legend">
             {
                 data && data.length && (data.map(obj => (
-                    <div id="legend">
-                        <li key={obj.val} >
+                    <div id="legend" key={obj.val} >
+                        <li >
                             <span style={{ background: `${obj.color}` }}></span>
                             {obj.label} ({obj.val})
                         </li>
