@@ -39,7 +39,13 @@ export const ReckonsysCharts = ({ options }) => {
           <ChartType value={form} onChange={onChange} list={chartTypes} />
         </div>
       </div>
-      {form.chartType == 1 && <PieChart></PieChart>}
+      {form.chartType == 1 && (
+        <PieChart
+          options={options}
+          showLegendSeperately={form.showLegendSeperately}
+          inLineLegend={form.inLineLegend}
+        ></PieChart>
+      )}
       {form.chartType == 2 && <DonutChart options={options} />}
       {form.chartType == 3 && (
         <HalfDonutChart

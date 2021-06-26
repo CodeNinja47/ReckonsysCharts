@@ -1,22 +1,31 @@
 import React, { useEffect } from 'react'
 
-export default function PieChart({ options }) {
-  const { data, colors, legend } = options
-  console.log(options)
+export default function PieChart({
+  options,
+  showLegendSeperately,
+  inLineLegend
+}) {
+  const { data } = options
 
   useEffect(() => {
+    let data1 = [],
+      colors = []
+    data.map((d) => {
+      data1.push({ label: d.label, value: d.val })
+      colors.push(d.color)
+    })
     if (
-      data &&
-      data.length > 0 &&
+      data1 &&
+      data1.length > 0 &&
       colors &&
       colors.length > 0 &&
-      data.length === colors.length
+      data1.length === colors.length
     ) {
-      drawPieChart(data, colors)
+      drawPieChart(data1, colors)
     } else {
       alert('data is missing')
     }
-  }, [])
+  }, [showLegendSeperately, inLineLegend, options])
 
   const drawPieChart = function (data, colors) {
     var canvas = document.getElementById('pie')
@@ -41,7 +50,8 @@ export default function PieChart({ options }) {
       ctx.fill()
 
       //ouside legend
-      if (legend === 'outside') {
+      if (showLegendSeperately) {
+        console.log('inside')
         ctx.rect(canvas.width - 200, y - i * 30, 12, 12)
         ctx.fill()
         ctx.font = '13px sans-serif'
@@ -58,7 +68,8 @@ export default function PieChart({ options }) {
       }
 
       //inside legend
-      if (legend === 'inline') {
+      if (inLineLegend) {
+        console.log('inline')
         var radius = y / 3 //use suitable radius
         var endAngle = lastend + Math.PI * (data[i].value / total)
         var setX = x + Math.cos(endAngle) * radius
