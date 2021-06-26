@@ -49,6 +49,7 @@ export const ReckonsysCharts = ({ options }) => {
     />}
     {form.chartType == 3 && <HalfDonutChart
       showLegendSeperately={form.showLegendSeperately}
+      inLineLegend={form.inLineLegend}
       options={options}
     />}
   </div>

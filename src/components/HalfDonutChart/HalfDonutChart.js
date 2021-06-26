@@ -4,6 +4,7 @@ import Legend from "../Charts/Legend";
 
 export default function HalfDonutChart({
     options,
+    inLineLegend,
     showLegendSeperately
 }) {
 
@@ -86,25 +87,28 @@ export default function HalfDonutChart({
             );
         }
 
-        start_angle = 3.141592653589793;
-        for (let categ in data) {
-            let val = data[categ];
-            let slice_angle = 2 * (window.Math.PI / 2) * val / total_value;
-            let pieRadius = window.Math.min(canvasRef.current.width / 2, canvasRef.current.height - 2);
-            let labelX = canvasRef.current.width / 2 + (pieRadius / 2) * window.Math.cos(start_angle + slice_angle / 2);
-            let labelY = canvasRef.current.height - 2 + (pieRadius / 2) * window.Math.sin(start_angle + slice_angle / 2);
+        if (inLineLegend) {
 
-            if (isDonutChart) {
-                let offset = (pieRadius * donutSize) / 2;
-                labelX = canvasRef.current.width / 2 + (offset + pieRadius / 2) * window.Math.cos(start_angle + slice_angle / 2);
-                labelY = canvasRef.current.height - 2 + (offset + pieRadius / 2) * window.Math.sin(start_angle + slice_angle / 2);
+            start_angle = 3.141592653589793;
+            for (let categ in data) {
+                let val = data[categ];
+                let slice_angle = 2 * (window.Math.PI / 2) * val / total_value;
+                let pieRadius = window.Math.min(canvasRef.current.width / 2, canvasRef.current.height - 2);
+                let labelX = canvasRef.current.width / 2 + (pieRadius / 2) * window.Math.cos(start_angle + slice_angle / 2);
+                let labelY = canvasRef.current.height - 2 + (pieRadius / 2) * window.Math.sin(start_angle + slice_angle / 2);
+
+                if (isDonutChart) {
+                    let offset = (pieRadius * donutSize) / 2;
+                    labelX = canvasRef.current.width / 2 + (offset + pieRadius / 2) * window.Math.cos(start_angle + slice_angle / 2);
+                    labelY = canvasRef.current.height - 2 + (offset + pieRadius / 2) * window.Math.sin(start_angle + slice_angle / 2);
+                }
+
+                let labelText = window.Math.round(100 * val / total_value);
+                canvasContext.fillStyle = "white";
+                canvasContext.font = "bold 20px Arial";
+                canvasContext.fillText(labelText + "%", labelX, labelY);
+                start_angle += slice_angle;
             }
-
-            let labelText = window.Math.round(100 * val / total_value);
-            canvasContext.fillStyle = "white";
-            canvasContext.font = "bold 20px Arial";
-            canvasContext.fillText(labelText + "%", labelX, labelY);
-            start_angle += slice_angle;
         }
 
         // const legend = true;
@@ -123,7 +127,7 @@ export default function HalfDonutChart({
         if (options && canvasContext) {
             drawPieChart();
         }
-    }, [options,canvasContext]);
+    }, [options, canvasContext, inLineLegend]);
 
     useEffect(() => {
         if (canvasRef.current) {
