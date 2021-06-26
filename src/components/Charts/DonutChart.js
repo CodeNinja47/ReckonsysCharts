@@ -36,7 +36,7 @@ class SkeletonChart {
                 obj.color
             );
 
-            if (this.options.legend !== "inline") {
+            if (this.options.legend !== "separate") {
                 var pieRadius = Math.min(this.canvas.width / 2, this.canvas.height / 2);
                 var labelX = this.canvas.width / 2 + (pieRadius / 2) * Math.cos(start_angle + slice_angle / 2);
                 var labelY = this.canvas.height / 2 + (pieRadius / 2) * Math.sin(start_angle + slice_angle / 2);
@@ -90,7 +90,7 @@ class DonutChart extends React.Component {
         return (
             <div>
                 <canvas ref={this.canvas} />
-                {this.props && this.props.options.data.length && this.props.options.legend == "inline" && (<Legend data={this.props.options.data}> </Legend>)}
+                {this.props && this.props.options.data.length && this.props.options.legend == "separate" && (<Legend data={this.props.options.data}> </Legend>)}
             </div>
         );
     }
