@@ -7,7 +7,7 @@ const ChartType = ({ value, onChange, list }) => {
       <select
         value={value.chartType}
         onChange={(event) => onChange('chartType', event.target.value)}
-        style={{ width: '25%', marginBottom: '2rem', height: '2rem' }}
+        style={{ width: '50%', marginBottom: '2rem', height: '2rem' }}
       >
         {list.map((item, index) => (
           <option key={index} value={item.value}>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Legend from "./Legend";
+import Legend from './Legend'
 import styles from './chart.module.css'
 
 export default function PieChart({
@@ -24,8 +24,8 @@ export default function PieChart({
       data1.length === colors.length
     ) {
       var canvas = document.getElementById('pie')
-      canvas.width = options.width;
-      canvas.height = options.height;
+      canvas.width = options.width
+      canvas.height = options.height
       var context = canvas.getContext('2d')
       context.clearRect(0, 0, canvas.width, canvas.height)
       drawPieChart(data1, colors)
@@ -76,13 +76,13 @@ export default function PieChart({
 
       //inside legend
       if (inLineLegend) {
-        var radius = y / 3
+        var radius = y / 2
         var endAngle = lastend + Math.PI * (data[i].value / total)
         var setX = x + Math.cos(endAngle) * radius
         var setY = y + Math.sin(endAngle) * radius
         ctx.fillStyle = '#ffffff'
         ctx.font = '14px sans-serif'
-        ctx.fillText(data[i].value, setX, setY)
+        ctx.fillText(parseInt((data[i].value / total) * 100) + '%', setX, setY)
         lastend += Math.PI * 2 * (data[i].value / total)
       }
     }
@@ -144,8 +144,10 @@ export default function PieChart({
       >
         <button onClick={() => onDownload()}>⬇️ Download</button>
       </div>
-      <canvas id='pie'/>
-      <Legend data={options.data} visibility={showLegendSeperately}> </Legend>
+      <canvas id='pie' />
+      <Legend data={options.data} visibility={showLegendSeperately}>
+        {' '}
+      </Legend>
     </div>
   )
 }
