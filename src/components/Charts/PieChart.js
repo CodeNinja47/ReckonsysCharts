@@ -21,6 +21,9 @@ export default function PieChart({
       colors.length > 0 &&
       data1.length === colors.length
     ) {
+      var canvas = document.getElementById('pie')
+      var context = canvas.getContext('2d')
+      context.clearRect(0, 0, canvas.width, canvas.height)
       drawPieChart(data1, colors)
     } else {
       alert('data is missing')
@@ -49,7 +52,7 @@ export default function PieChart({
       ctx.arc(x, y, y - 100, startAngle, endAngle)
       ctx.fill()
 
-      //ouside legend
+      //   ouside legend
       if (showLegendSeperately) {
         console.log('inside')
         ctx.rect(canvas.width - 200, y - i * 30, 12, 12)
@@ -69,8 +72,7 @@ export default function PieChart({
 
       //inside legend
       if (inLineLegend) {
-        console.log('inline')
-        var radius = y / 3 //use suitable radius
+        var radius = y / 3
         var endAngle = lastend + Math.PI * (data[i].value / total)
         var setX = x + Math.cos(endAngle) * radius
         var setY = y + Math.sin(endAngle) * radius
@@ -118,5 +120,27 @@ export default function PieChart({
     return (angle * Math.PI) / 180
   }
 
-  return <canvas id='pie' width='800' height='500'></canvas>
+  const onDownload = () => {
+    var canvas = document.getElementById('pie')
+    var image = canvas
+      .toDataURL('image/png')
+      .replace('image/png', 'image/octet-stream')
+    var link = document.createElement('a')
+    link.download = 'my-image.png'
+    link.href = image
+    link.click()
+  }
+
+  return (
+    <div>
+      <div
+        style={{
+          marginBottom: '10px'
+        }}
+      >
+        <button onClick={() => onDownload()}>⬇️ Download</button>
+      </div>
+      <canvas id='pie' width='800' height='500'></canvas>
+    </div>
+  )
 }
