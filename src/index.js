@@ -18,6 +18,8 @@ export const ExampleComponent = ({ options }) => {
 
   return <div className={styles.test}>
     <PieChart></PieChart>
+    <button onClick={onClick}>click to change data</button>
+
     <HalfDonutChart
       options={options}
     />
