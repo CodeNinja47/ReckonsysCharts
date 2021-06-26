@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 
 import Legend from "./Legend";
+import styles from './chart.module.css'
 
 export default function HalfDonutChart({
     options,
@@ -51,16 +52,16 @@ export default function HalfDonutChart({
             total_value += val;
         }
 
-        let start_angle = 3.141592653589793;
+        let start_angle = Math.PI;
         for (let categ in data) {
             let val = data[categ];
-            let slice_angle = 2 * (window.Math.PI / 2) * val / total_value;
+            let slice_angle = 2 * (Math.PI / 2) * val / total_value;
 
             drawPieSlice(
                 canvasContext,
                 canvasRef.current.width / 2,
-                canvasRef.current.height - 2,
-                window.Math.min(canvasRef.current.width / 2, canvasRef.current.height - 2),
+                canvasRef.current.height / 2,
+                window.Math.min(canvasRef.current.width / 2, canvasRef.current.height / 2),
                 start_angle,
                 start_angle + slice_angle,
                 colors[color_index % colors.length]
@@ -71,7 +72,7 @@ export default function HalfDonutChart({
         }
 
         const isDonutChart = true;
-        const donutSize = 0.5;
+        const donutSize = 0.4;
 
         //drawing a white circle over the chart
         //to create the doughnut chart
@@ -79,8 +80,8 @@ export default function HalfDonutChart({
             drawPieSlice(
                 canvasContext,
                 canvasRef.current.width / 2,
-                canvasRef.current.height - 2,
-                donutSize * window.Math.min(canvasRef.current.width / 2, canvasRef.current.height - 2),
+                canvasRef.current.height / 2,
+                donutSize * window.Math.min(canvasRef.current.width / 2, canvasRef.current.height/ 2),
                 0,
                 2 * window.Math.PI,
                 "#ffffff"
@@ -93,19 +94,18 @@ export default function HalfDonutChart({
             for (let categ in data) {
                 let val = data[categ];
                 let slice_angle = 2 * (window.Math.PI / 2) * val / total_value;
-                let pieRadius = window.Math.min(canvasRef.current.width / 2, canvasRef.current.height - 2);
-                let labelX = canvasRef.current.width / 2 + (pieRadius / 2) * window.Math.cos(start_angle + slice_angle / 2);
-                let labelY = canvasRef.current.height - 2 + (pieRadius / 2) * window.Math.sin(start_angle + slice_angle / 2);
+                var pieRadius = Math.min(canvasRef.current.width / 2, canvasRef.current.height / 2);
+                var labelX = canvasRef.current.width / 2 + (pieRadius / 2) * Math.cos(start_angle + slice_angle / 2);
+                var labelY = canvasRef.current.height / 2 + (pieRadius / 2) * Math.sin(start_angle + slice_angle / 2);
 
-                if (isDonutChart) {
-                    let offset = (pieRadius * donutSize) / 2;
-                    labelX = canvasRef.current.width / 2 + (offset + pieRadius / 2) * window.Math.cos(start_angle + slice_angle / 2);
-                    labelY = canvasRef.current.height - 2 + (offset + pieRadius / 2) * window.Math.sin(start_angle + slice_angle / 2);
-                }
+                var offset = (pieRadius * 0.5) / 2;
+                labelX = canvasRef.current.width / 2 + (offset + pieRadius / 2) * Math.cos(start_angle + slice_angle / 2);
+                labelY = canvasRef.current.height / 2 + (offset + pieRadius / 2) * Math.sin(start_angle + slice_angle / 2);
 
-                let labelText = window.Math.round(100 * val / total_value);
+
+                var labelText = Math.round(100 * val / total_value);
                 canvasContext.fillStyle = "white";
-                canvasContext.font = "bold 20px Arial";
+                canvasContext.font = "17px Arial";
                 canvasContext.fillText(labelText + "%", labelX, labelY);
                 start_angle += slice_angle;
             }
@@ -144,7 +144,7 @@ export default function HalfDonutChart({
         link.click();
     };
 
-    return <div className="">
+    return <div className={styles.chart_container}>
         <div>
             <button onClick={() => onDownload()}>⬇️ Download</button>
         </div>
