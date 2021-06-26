@@ -9,7 +9,7 @@ import ChartType from './components/DropDown/dropdown';
 import DonutChart from './components/Charts/DonutChart';
 import HalfDonutChart from './components/HalfDonutChart/HalfDonutChart';
 
-export const ExampleComponent = ({ options }) => {
+export const ReckonsysCharts = ({ options }) => {
 
   const [chartOption, setchartOption] = useState(options);
 
