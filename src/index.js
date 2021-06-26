@@ -11,14 +11,6 @@ import HalfDonutChart from './components/HalfDonutChart/HalfDonutChart';
 
 export const ReckonsysCharts = ({ options }) => {
 
-  const [chartOption, setchartOption] = useState(options);
-
-  const onClick = () => {
-    const temp = JSON.parse(JSON.stringify(options));
-    temp.data[0].val = 0;
-    console.log(temp)
-    setchartOption(temp);
-  }
 
     return <div className={styles.test}>
     <div className={styles.flex}>
@@ -30,7 +22,6 @@ export const ReckonsysCharts = ({ options }) => {
       </div>
     </div>
     <PieChart></PieChart>
-    <button onClick={onClick}>click to change data</button>
 
     <HalfDonutChart
       options={options}
