@@ -81,7 +81,7 @@ export default function PieChart({
         var setX = x + Math.cos(endAngle) * radius
         var setY = y + Math.sin(endAngle) * radius
         ctx.fillStyle = '#ffffff'
-        ctx.font = '14px sans-serif'
+        ctx.font = '17px Arial'
         ctx.fillText(parseInt((data[i].value / total) * 100) + '%', setX, setY)
         lastend += Math.PI * 2 * (data[i].value / total)
       }
