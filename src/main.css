@@ -22,9 +22,16 @@ td, th {
     border: 2px solid #dddddd;
     text-align: left;
     padding: 8px;
-  }
+}
 
-  
+tbody {
+  color: black;
+}
+
 tr:nth-child(even) {
     background-color: rgb(241 241 241)
+}
+
+li {
+  color: black;
 }
