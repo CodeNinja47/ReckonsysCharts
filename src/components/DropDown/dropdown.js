@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChartType = ({ value, onChange, list }) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', color: '#000' }}>
       <label style={{ marginBottom: '0.5rem' }}>Select the chart type:</label>
       <select
         value={value.chartType}
